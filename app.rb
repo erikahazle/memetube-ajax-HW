@@ -50,22 +50,30 @@ get '/videos/:id/edit' do
   sql = "SELECT * FROM videos WHERE id=#{params[:id]}"
   @video = run_sql(sql).first
   if request.xhr?
-    json [{status: :ok}]
+    json @video
   else
-    redirect_to ('/items')
+    erb :index
   end
 end
 
-post '/videos/:id' do
-  sql = "UPDATE videos SET title = '#{params['title']}', description = '#{params['description']}', url = '#{params['url']}', genre = '#{params['genre']}' WHERE id=#{params[:id]}"
-  run_sql(sql)
-  redirect to ("/videos/#{params[:id]}")
+put '/videos/:id' do
+  sql = "UPDATE videos SET title = '#{params['title']}', description = '#{params['description']}', url = '#{params['url']}', genre = '#{params['genre']}' WHERE id=#{params[:id]} returning *"
+  @video = run_sql(sql)
+  if request.xhr?
+    json @video
+  else
+    redirect to ("/videos/#{params[:id]}")
+  end
 end
 
 delete '/videos/:id/delete' do
   sql = "DELETE FROM videos WHERE id=#{params[:id]}"
   run_sql(sql)
-  redirect to ("/videos")
+  if request.xhr?
+    json [{status: :ok}]
+  else
+    erb :index
+  end
 end
 
 
