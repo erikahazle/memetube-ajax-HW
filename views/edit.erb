@@ -1,0 +1,9 @@
+<h2>Add a new video</h2>
+
+<form action="/videos/<%= params[:id] %>" method="post">
+  <input type="text" name="title" value="<%= @video['title'] %>">
+  <input type="text" name="description" value="<%= @video['description'] %>">
+  <input type="text" name="url" value="<%= @video['url'] %>">
+  <input type="text" name="genre" value="<%= @video['genre'] %>">
+  <input type="submit">
+</form>
