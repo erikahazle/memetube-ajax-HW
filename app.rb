@@ -49,7 +49,11 @@ end
 get '/videos/:id/edit' do
   sql = "SELECT * FROM videos WHERE id=#{params[:id]}"
   @video = run_sql(sql).first
-  erb :edit
+  if request.xhr?
+    json [{status: :ok}]
+  else
+    redirect_to ('/items')
+  end
 end
 
 post '/videos/:id' do
