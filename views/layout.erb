@@ -8,15 +8,18 @@
 <body>
   <header>
     <nav>
-      <li class="nav-item"><a href="/" id="brand-logo">MEMETUBE</a></li>
-      <li class="nav-item"><a href="/videos">Videos</a></li>
-      <li class="nav-item"><a href="/videos/new">Add new video</a></li>
+      <li class="nav-item"><button id="brand-logo">MEMETUBE</button></li>
+      <li class="nav-item"><button id="video-link">Videos</button></li>
+      <li class="nav-item"><button id="new-video-link">Add new video</button></li>
     </nav>
   </header>
-  <div class="wrapper">
+  <main>
     <%= yield %>
-  </div>
+  </main>
+  <aside>
+    
+  </aside>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script type="text/javascript" scr="/script.js"></script>
+  <script src="/script.js"></script>
 </body>
 </html>
