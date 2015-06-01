@@ -2,7 +2,7 @@ function appendItems(item) {
   $('main').append('<div class="video-page">' +
         '<iframe src="' + item.url + '" class="video-page-vid"></iframe>' +
         '<div>' +
-          '<button class="video-link" data-id=' + item.id + '>' + item.title + '</button>' +
+          '<a class="video-link" data-id=' + item.id + '>' + item.title + '</a>' +
         '</div></div>')
 }
 
@@ -25,6 +25,7 @@ function newVideoForm() {
 }
 
 function loadVideos(e) {
+  e.preventDefault();
   $.ajax({
     type: 'GET',
     url: '/videos',
@@ -57,6 +58,7 @@ function createNewVideo(e) {
 }
 
 function displayVideo(e) {
+  e.preventDefault();
   var videoId = $(this).attr('data-id');
   $.ajax({
     type: 'GET',
